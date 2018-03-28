@@ -1,9 +1,5 @@
 <?php
 // Arquivo desenvolvido por: Igor Moraes
-// Funções gerais
-function menuNavegacao(){
-	echo '<div style="width:500px; margin: 0 auto;">Será menu</div>';
-}
 // Funções calculadora
 
 
