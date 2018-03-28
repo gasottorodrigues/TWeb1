@@ -1,6 +1,4 @@
 # Primeiro trabalho WEB
-#
-#
 ## Integrantes:
 - André Calixto
 - Gabriel Borges
