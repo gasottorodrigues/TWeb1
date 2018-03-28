@@ -1,5 +1,6 @@
 <?php
 // Arquivo desenvolvido por: Igor Jerônimo de Moraes
+
 // Funções calculadora
 
 
@@ -26,11 +27,9 @@
 // Funções IMC
 
 	function IMC($massa, $altura){
-		$imc = $massa / $altura* $altura;
+		$imc = $massa / ($altura* $altura);
 		return $imc;
 	}
 	
-	function (){
-		
-	}
+
 ?> 
