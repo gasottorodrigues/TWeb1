@@ -9,6 +9,8 @@ include("funcoes.php");
 		<link href="css/estilo.css" rel="stylesheet" type="text/css">	
 	</head>
 	<body>
-	
+		<form name="formCadastro" class="form" action="" method="post">
+		
+		<form>	
 	</body>
 </html> 
