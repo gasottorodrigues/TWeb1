@@ -15,6 +15,7 @@
 				<select name="usuarioIMC" id="usuarioIMC">
 					<option selected>Anônimo</option>
 					<?php
+					//Roda o arquivo xml usuarios criando um option pra cada resultado encontrado
 					if(file_exists("xml/usuarios.xml")){
 						$xml = simplexml_load_file("xml/usuarios.xml");
 						
