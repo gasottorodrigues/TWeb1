@@ -1,0 +1,14 @@
+<?php
+	function erroIMC($erroId){
+		echo "<script>console.log(".$erroId.");</script>";
+		echo'
+		<p>
+			Erro no envio do formulário, tente novamente mais tarde!					
+		</p>
+		<p>
+		Clique <a href="index.php">aqui</a> para voltar ao início
+		</p>
+		';
+		die();
+	}
+?>

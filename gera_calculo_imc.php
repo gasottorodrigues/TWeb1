@@ -1,6 +1,5 @@
 <?php
-$erro = 0;
-$erroId = 0;
+include("funcoes.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -12,59 +11,89 @@ $erroId = 0;
 	<body>					
 		<?php
 		if(empty($_POST)){
-			$erro = 1;
-			$erroId = 1;
-		}
-		if(empty($_POST["usuarioIMC"])){
-			$erro = 1;
-			$erroId = 2;
+			erroIMC(1);	
 		}
 		
-		if(filter_input(INPUT_POST, "alturaIMC", FILTER_VALIDATE_FLOAT) or filter_input(INPUT_POST, "pesoIMC", FILTER_VALIDATE_FLOAT)){		
-			if(($_POST["alturaIMC"] > 5 or $_POST["alturaIMC"] < 0 ) or ($_POST["pesoIMC"] < 0 or $_POST["pesoIMC"] > 450)){
-				$erro = 1;
-				$erroId = 3;
-			}
+		if(!isset($_POST["usuarioIMC"]) || !isset($_POST["alturaIMC"]) || !isset($_POST["pesoIMC"]) ){
+			erroIMC(2);	
 		}
-		else{
-			$erro = 1;
-			$erroId = 4;			
+		
+			
+		if(($_POST["alturaIMC"] > 5 or $_POST["alturaIMC"] < 0 ) or ($_POST["pesoIMC"] < 0 or $_POST["pesoIMC"] > 450)){
+			erroIMC(3);	
 		}
+		
+		
 		
 		if(file_exists("xml/usuarios.xml")){
-			$xml = simplexml_load_file("xml/usuarios.xml");
-			foreach ($xml->children() as $usuario){   
-				if($usuario->nome == $_POST["usuarioIMC"]){
-					$usuario = $_POST["usuarioIMC"];
-					break;
-				}
-				else{
-					$usuario = "Anônimo";
-				}
-			} 						
+			if(isset($_POST["usuarioIMC"])){
+				$xml = simplexml_load_file("xml/usuarios.xml");
+				foreach ($xml->children() as $usuario){   
+					
+					if($usuario->nome == $_POST["usuarioIMC"]){
+						$usuario = $_POST["usuarioIMC"];
+						break;
+					}
+					else{
+						$usuario = "Anônimo";
+					}
+				} 
+			}
+			else{
+				
+			}	
 		}
 		else{
-			$erro = 1;
-			$erroId = 5;			
+			$usuario = "Anônimo";				
 		}
 		
-		if($erro == 1){
-			echo "<script>console.log(".$erroId.");</script>";
-			echo'
-			<p>
-				Erro no envio do formulário, tente novamente mais tarde!					
-			</p>
-			<p>
-			Clique <a href="index.php">aqui</a> para voltar ao início
-			</p>
-			';
-		}
-		else{
+		
+			
+		
+	
 			$altura = $_POST["alturaIMC"];
 			$peso = $_POST["pesoIMC"];
 			
-			print_r($altura ." ".$peso ." ". $usuario);
-		}
+			$IMC = $peso / ($altura * $altura);
+			$IMC = number_format($IMC, 2, '.', ',');
+			
+			#Cria o xml caso o arquivo não exista
+			if(!file_exists("xml/imc.xml")){
+				$xml = 
+'<?xml version="1.0" encoding="UTF-8"?>
+<consultas>
+    <consulta>
+        <usuario>' . $usuario . '</usuario>
+        <altura>' . $altura . '</altura>                                                                               
+        <peso>' . $peso . '</peso>
+        <IMC>' . $IMC . '</IMC>
+    </consulta>
+</consultas>';
+			   file_put_contents("xml/imc.xml", $xml);
+			}
+			
+			#cria um nó no xml caso o arquivo já exista
+			else{
+					$xml = simplexml_load_file("xml/imc.xml");
+					$consulta = $xml->addChild('consulta');
+					$consulta-> addChild('usuario',$usuario);
+					$consulta-> addChild('altura',$altura);
+					$consulta-> addChild('peso',$peso);
+					$consulta -> addChild('IMC',$IMC);							
+					file_put_contents("xml/imc.xml", $xml->asXML());
+			}
+			echo'
+			<p>
+				O usuário '.$usuario.' tem '.$IMC.' de IMC!
+			</p>
+			<p>
+				Clique <a href="index.php">aqui</a> para voltar ao início
+			</p>
+			<p>
+				Clique <a href="imc.php">aqui</a> para cadastrar mais IMC
+			</p>
+			';
+		
 		?>				
 	</body>
 </html>  
