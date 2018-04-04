@@ -8,8 +8,8 @@
 </head>
 <body>
 
-	<!-- Inclusão do cabecalho 
-	<?php include"cabecalho.php"; ?>-->
+	<!-- Inclusão do cabecalho  -->
+	<?php include"cabecalho.php"; ?>
 
 
 	<!-- Formulário -->
@@ -38,12 +38,13 @@
 				<input type="text" maxlength="11" name="cpf" required="required">
 			</p>
 			<p>
-				<label>Cidade:</label>
-				<input type="text" name="cidade" required>
-			</p>
-			<p>
 				<label>Estado(abreviado):</label>
 				<input type="text" name="estado" maxlength="2" required="required">
+			</p>
+
+			<p>
+				<label>Cidade:</label>
+				<input type="text" name="cidade" required>
 			</p>
 
 				<input type="submit" value="Cadastrar">
