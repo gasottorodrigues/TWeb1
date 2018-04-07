@@ -11,6 +11,15 @@
 							<tr class="table100-head">
 								<th class="column" colspan="7">Usuario</th>
 							</tr>
+							<tr class="table100-head" style="background-color: #555; border-top:1px solid white;">
+								<th>Nome</th>
+								<th>E-mail</th>
+								<th>Sexo</th>
+								<th>Data de Nascimento</th>
+								<th>CPF</th>
+								<th>Cidade</th>
+								<th>Estado</th>
+							</tr>
 						</thead>		
 						<tr>
 							<td><!--Checar se existe o arquivo xml para cadastrar os usuarios  -->
@@ -40,7 +49,11 @@
 						<table><!--Checar se existe o arquivo xml para cadastrar os calculos feitos pela calculadora  -->
 						<thead>
 							<tr class="table100-head">
-								<th class="column1" colspan="7">Calculos da Calculadora</th>
+								<th class="column1" colspan="2">Calculos da Calculadora</th>
+							</tr>
+							<tr class="table100-head" style="background-color: #555;border-top:1px solid white;">
+								<th>Usuário</th>
+								<th>Operação</th>
 							</tr>
 						</thead>
 						<tr>
@@ -52,8 +65,7 @@
 										foreach($xml as $calc){
 										echo"<tr>
 												<td>".$calc->usuario ."</td>
-												<td>".$calc->calculo ."</td>
-												<td>".$calc->resultado ."</td>
+												<td>".$calc->operacao ."</td>
 											</tr>";
 										}
 									} else {
@@ -67,7 +79,13 @@
 						<table><!--Checar se existe o arquivo xml para cadastrar os calculos feitos pelo IMC  -->
 						<thead>
 							<tr class="table100-head">
-								<th class="column1" colspan="7">Calculos do IMC</th>
+								<th class="column1" colspan="4">Calculos do IMC</th>
+							</tr>
+							<tr class="table100-head" style="background-color: #555;border-top:1px solid white;">
+								<th>Usuário</th>
+								<th>Altura</th>
+								<th>Peso</th>
+								<th>IMC</th>
 							</tr>
 						</thead>
 						<tr>
