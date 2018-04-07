@@ -1,14 +1,9 @@
 <?php
 include("funcoes.php");
+include("cabecalho.php");
 ?>
 <!DOCTYPE html>
-<html lang="pt-BR">
-	<head>
-		<title>Trabalho1</title>
-		<meta charset="UTF-8"/>
-		<link href="css/style.css" rel="stylesheet" type="text/css">	
-	</head>
-	<body>					
+				
 		<?php
 		//Caso o post estiver vazio, chama uma funcao de erro e atribui 1 ao id do erro(fiz apenas pra facilitar na visualização de algum problema)
 		if(empty($_POST)){
