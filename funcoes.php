@@ -38,6 +38,10 @@
 		return $z;
 	}
 	
+	function resto($x, $y){
+		$z = $x%$y;
+		return $z;
+	}
 	//Funções calcular IMC
 	
 	function calcularIMC($massa, $altura){
